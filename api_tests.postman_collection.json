@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "6ef843f3-a226-4588-a792-4f844bac7fc5",
+		"name": "api_tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_pet_id_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Животоное с таким id есть\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/1",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post_pet_id_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Информация о питомце передана\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/1?petId=1&name=Sparkle&status=unavailable",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"1"
+					],
+					"query": [
+						{
+							"key": "petId",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Sparkle"
+						},
+						{
+							"key": "status",
+							"value": "unavailable"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put_pet_id_1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Информация о питомце обновлена\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"$schema\": \"http://json-schema.org/draft-07/schema\",\r\n    \"$id\": \"http://example.com/example.json\",\r\n    \"type\": \"object\",\r\n    \"title\": \"The root schema\",\r\n    \"description\": \"The root schema comprises the entire JSON document.\",\r\n    \"default\": {},\r\n    \"examples\": [\r\n        {\r\n            \"id\": 1,\r\n            \"category\": {\r\n                \"id\": 1,\r\n                \"name\": \"hamster\"\r\n            },\r\n            \"name\": \"Ham\",\r\n            \"photoUrls\": [\r\n                \"string\"\r\n            ],\r\n            \"tags\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"hamster\"\r\n                }\r\n            ],\r\n            \"status\": \"available\"\r\n        }\r\n    ],\r\n    \"required\": [\r\n        \"id\",\r\n        \"category\",\r\n        \"name\",\r\n        \"photoUrls\",\r\n        \"tags\",\r\n        \"status\"\r\n    ],\r\n    \"properties\": {\r\n        \"id\": {\r\n            \"$id\": \"#/properties/id\",\r\n            \"type\": \"integer\",\r\n            \"title\": \"The id schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": 0,\r\n            \"examples\": [\r\n                1\r\n            ]\r\n        },\r\n        \"category\": {\r\n            \"$id\": \"#/properties/category\",\r\n            \"type\": \"object\",\r\n            \"title\": \"The category schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": {},\r\n            \"examples\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"hamster\"\r\n                }\r\n            ],\r\n            \"required\": [\r\n                \"id\",\r\n                \"name\"\r\n            ],\r\n            \"properties\": {\r\n                \"id\": {\r\n                    \"$id\": \"#/properties/category/properties/id\",\r\n                    \"type\": \"integer\",\r\n                    \"title\": \"The id schema\",\r\n                    \"description\": \"An explanation about the purpose of this instance.\",\r\n                    \"default\": 0,\r\n                    \"examples\": [\r\n                        1\r\n                    ]\r\n                },\r\n                \"name\": {\r\n                    \"$id\": \"#/properties/category/properties/name\",\r\n                    \"type\": \"string\",\r\n                    \"title\": \"The name schema\",\r\n                    \"description\": \"An explanation about the purpose of this instance.\",\r\n                    \"default\": \"\",\r\n                    \"examples\": [\r\n                        \"hamster\"\r\n                    ]\r\n                }\r\n            },\r\n            \"additionalProperties\": true\r\n        },\r\n        \"name\": {\r\n            \"$id\": \"#/properties/name\",\r\n            \"type\": \"string\",\r\n            \"title\": \"The name schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": \"\",\r\n            \"examples\": [\r\n                \"Ham\"\r\n            ]\r\n        },\r\n        \"photoUrls\": {\r\n            \"$id\": \"#/properties/photoUrls\",\r\n            \"type\": \"array\",\r\n            \"title\": \"The photoUrls schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": [],\r\n            \"examples\": [\r\n                [\r\n                    \"string\"\r\n                ]\r\n            ],\r\n            \"additionalItems\": true,\r\n            \"items\": {\r\n                \"$id\": \"#/properties/photoUrls/items\",\r\n                \"anyOf\": [\r\n                    {\r\n                        \"$id\": \"#/properties/photoUrls/items/anyOf/0\",\r\n                        \"type\": \"string\",\r\n                        \"title\": \"The first anyOf schema\",\r\n                        \"description\": \"An explanation about the purpose of this instance.\",\r\n                        \"default\": \"\",\r\n                        \"examples\": [\r\n                            \"string\"\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"tags\": {\r\n            \"$id\": \"#/properties/tags\",\r\n            \"type\": \"array\",\r\n            \"title\": \"The tags schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": [],\r\n            \"examples\": [\r\n                [\r\n                    {\r\n                        \"id\": 1,\r\n                        \"name\": \"hamster\"\r\n                    }\r\n                ]\r\n            ],\r\n            \"additionalItems\": true,\r\n            \"items\": {\r\n                \"$id\": \"#/properties/tags/items\",\r\n                \"anyOf\": [\r\n                    {\r\n                        \"$id\": \"#/properties/tags/items/anyOf/0\",\r\n                        \"type\": \"object\",\r\n                        \"title\": \"The first anyOf schema\",\r\n                        \"description\": \"An explanation about the purpose of this instance.\",\r\n                        \"default\": {},\r\n                        \"examples\": [\r\n                            {\r\n                                \"id\": 1,\r\n                                \"name\": \"hamster\"\r\n                            }\r\n                        ],\r\n                        \"required\": [\r\n                            \"id\",\r\n                            \"name\"\r\n                        ],\r\n                        \"properties\": {\r\n                            \"id\": {\r\n                                \"$id\": \"#/properties/tags/items/anyOf/0/properties/id\",\r\n                                \"type\": \"integer\",\r\n                                \"title\": \"The id schema\",\r\n                                \"description\": \"An explanation about the purpose of this instance.\",\r\n                                \"default\": 0,\r\n                                \"examples\": [\r\n                                    1\r\n                                ]\r\n                            },\r\n                            \"name\": {\r\n                                \"$id\": \"#/properties/tags/items/anyOf/0/properties/name\",\r\n                                \"type\": \"string\",\r\n                                \"title\": \"The name schema\",\r\n                                \"description\": \"An explanation about the purpose of this instance.\",\r\n                                \"default\": \"\",\r\n                                \"examples\": [\r\n                                    \"hamster\"\r\n                                ]\r\n                            }\r\n                        },\r\n                        \"additionalProperties\": true\r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"status\": {\r\n            \"$id\": \"#/properties/status\",\r\n            \"type\": \"string\",\r\n            \"title\": \"The status schema\",\r\n            \"description\": \"An explanation about the purpose of this instance.\",\r\n            \"default\": \"\",\r\n            \"examples\": [\r\n                \"available\"\r\n            ]\r\n        }\r\n    },\r\n    \"additionalProperties\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_pet_id_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Питомец с таким id удалён\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/1?petId=1",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"1"
+					],
+					"query": [
+						{
+							"key": "petId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
